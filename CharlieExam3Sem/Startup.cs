@@ -35,6 +35,23 @@ namespace CharlieExam3Sem
 			services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
 				.AddEntityFrameworkStores<ApplicationDbContext>();
 			services.AddControllersWithViews();
+
+			//her tilføjer vi id og secret for vores Facebook app
+			services.AddAuthentication().AddFacebook(options =>
+			{
+				options.AppId = Configuration["Authentication:Facebook:AppId"];
+				options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+				options.AccessDeniedPath = "/AccessDenied";
+			}).AddGoogle(options =>
+			{
+				IConfigurationSection googleAuthNSection =
+					Configuration.GetSection("Authentication:Google");
+
+				options.ClientId = googleAuthNSection["ClientId"];
+				options.ClientSecret = googleAuthNSection["ClientSecret"];
+				//dumme Callback var navnet på faileren!!!! Sku tilføjes på Google Developer også
+				options.CallbackPath = "/AccessDenied";
+			});
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
