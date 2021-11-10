@@ -22,8 +22,8 @@ namespace CharlieExam3Sem.Controllers
 		{
 			return View();
 		}
-
-		public IActionResult Privacy()
+		[HttpGet("/AccessDenied")]
+		public IActionResult AccessDenied()
 		{
 			return View();
 		}
