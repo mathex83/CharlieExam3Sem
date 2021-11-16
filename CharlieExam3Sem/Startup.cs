@@ -37,19 +37,21 @@ namespace CharlieExam3Sem
 			services.AddControllersWithViews();
 
 			//her tilføjer vi id og secret for vores Facebook app
-			services.AddAuthentication().AddFacebook(options =>
+			services.AddAuthentication()
+				.AddFacebook(options =>
 			{
 				options.AppId = Configuration["Authentication:Facebook:AppId"];
 				options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
 				options.AccessDeniedPath = "/AccessDenied";
-			}).AddGoogle(options =>
+			})
+				.AddGoogle(options =>
 			{
 				IConfigurationSection googleAuthNSection =
 					Configuration.GetSection("Authentication:Google");
 
 				options.ClientId = googleAuthNSection["ClientId"];
 				options.ClientSecret = googleAuthNSection["ClientSecret"];
-				//dumme Callback var navnet på faileren!!!! Sku tilføjes på Google Developer også
+				//Callback var navnet. Sku tilføjes på Google Developer også
 				options.CallbackPath = "/AccessDenied";
 			});
 		}
