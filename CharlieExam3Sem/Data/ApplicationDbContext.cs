@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using CharlieExam3Sem.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CharlieExam3Sem.Data
 {
@@ -12,5 +10,9 @@ namespace CharlieExam3Sem.Data
 			: base(options)
 		{
 		}
+
+		public DbSet<City> Cities { get; set; }
+		public DbSet<Runner> Runners { get; set; }
+		public DbSet<EventInfo> Events { get; set; }
 	}
 }
