@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CharlieExam3Sem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211116152329_i")]
+    [Migration("20211118142759_i")]
     partial class i
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -18,13 +18,12 @@ namespace CharlieExam3Sem.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.11")
+                .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("CharlieExam3Sem.Models.City", b =>
                 {
                     b.Property<int>("ZipCode")
-                        .HasMaxLength(4)
                         .HasColumnType("int");
 
                     b.Property<string>("CityName")
@@ -37,38 +36,19 @@ namespace CharlieExam3Sem.Migrations
                     b.ToTable("Cities");
                 });
 
-            modelBuilder.Entity("CharlieExam3Sem.Models.EventInfo", b =>
+            modelBuilder.Entity("CharlieExam3Sem.Models.Runner", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("EventDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("EventName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<DateTime>("LapTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Events");
-                });
-
-            modelBuilder.Entity("CharlieExam3Sem.Models.Runner", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("AssignCaptain")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
@@ -92,13 +72,17 @@ namespace CharlieExam3Sem.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("PhoneNumber")
-                        .HasMaxLength(8)
                         .HasColumnType("int");
 
                     b.Property<int>("RunnerNumber")
                         .HasColumnType("int");
 
+                    b.Property<int?>("Zip")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
+
+                    b.HasIndex("Zip");
 
                     b.ToTable("Runners");
                 });
@@ -303,22 +287,13 @@ namespace CharlieExam3Sem.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("CharlieExam3Sem.Models.City", b =>
-                {
-                    b.HasOne("CharlieExam3Sem.Models.Runner", null)
-                        .WithMany("ZipCode")
-                        .HasForeignKey("ZipCode")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("CharlieExam3Sem.Models.Runner", b =>
                 {
-                    b.HasOne("CharlieExam3Sem.Models.EventInfo", null)
-                        .WithMany("RunnerID")
-                        .HasForeignKey("ID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("CharlieExam3Sem.Models.City", "ZipCode")
+                        .WithMany()
+                        .HasForeignKey("Zip");
+
+                    b.Navigation("ZipCode");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -370,16 +345,6 @@ namespace CharlieExam3Sem.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("CharlieExam3Sem.Models.EventInfo", b =>
-                {
-                    b.Navigation("RunnerID");
-                });
-
-            modelBuilder.Entity("CharlieExam3Sem.Models.Runner", b =>
-                {
-                    b.Navigation("ZipCode");
                 });
 #pragma warning restore 612, 618
         }

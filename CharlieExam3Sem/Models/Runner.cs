@@ -21,12 +21,13 @@ namespace CharlieExam3Sem.Models
 		[Required]
 		public string Address { get; set; }
 
-		[ForeignKey("ZipCode")]
-		public ICollection<City> ZipCode { get; set; }
+		[ForeignKey("Zip")]
+		public City ZipCode { get; set; }
 
 		[Required]
-		[StringLength(8)]
 		public int PhoneNumber { get; set; }
+
+		public bool? AssignCaptain { get; set; }
 
 		[Required]
 		[StringLength(100)]

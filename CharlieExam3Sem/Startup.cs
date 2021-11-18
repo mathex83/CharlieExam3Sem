@@ -1,4 +1,7 @@
 using CharlieExam3Sem.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication.Facebook;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,28 +35,31 @@ namespace CharlieExam3Sem
 					Configuration.GetConnectionString("DefaultConnection")));
 			services.AddDatabaseDeveloperPageExceptionFilter();
 
-			services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+			services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
 				.AddEntityFrameworkStores<ApplicationDbContext>();
+			
 			services.AddControllersWithViews();
+			services.AddRazorPages();
 
-			//her tilføjer vi id og secret for vores Facebook app
+			//her tilføjer vi id og secret for vores forskellige apps
 			services.AddAuthentication()
 				.AddFacebook(options =>
-			{
-				options.AppId = Configuration["Authentication:Facebook:AppId"];
-				options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
-				options.AccessDeniedPath = "/AccessDenied";
-			})
+				{
+					options.AppId = Configuration["Authentication:Facebook:AppId"];
+					options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+					options.AccessDeniedPath = "/AccessDenied";
+				})
 				.AddGoogle(options =>
-			{
-				IConfigurationSection googleAuthNSection =
-					Configuration.GetSection("Authentication:Google");
+				{
+					IConfigurationSection googleAuthNSection =
+						Configuration.GetSection("Authentication:Google");
 
-				options.ClientId = googleAuthNSection["ClientId"];
-				options.ClientSecret = googleAuthNSection["ClientSecret"];
-				//Callback var navnet. Sku tilføjes på Google Developer også
-				options.CallbackPath = "/AccessDenied";
-			});
+					options.ClientId = googleAuthNSection["ClientId"];
+					options.ClientSecret = googleAuthNSection["ClientSecret"];
+					options.AuthorizationEndpoint += "?prompt=consent";
+					//Callback var navnet. Sku tilføjes på Google Developer også
+					options.AccessDeniedPath = "/AccessDenied";
+				});
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -76,6 +82,7 @@ namespace CharlieExam3Sem
 			app.UseRouting();
 
 			app.UseAuthentication();
+
 			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints =>

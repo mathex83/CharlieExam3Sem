@@ -7,7 +7,6 @@ namespace CharlieExam3Sem.Models
 	{
 		[Key]
 		[DatabaseGenerated(DatabaseGeneratedOption.None)]
-		[StringLength(4)]
 		public int ZipCode { get; set; }
 
 		[Required]
