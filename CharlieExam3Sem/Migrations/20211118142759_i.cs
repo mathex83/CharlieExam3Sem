@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CharlieExam3Sem.Migrations
 {
-    public partial class initial : Migration
+    public partial class i : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,6 +44,18 @@ namespace CharlieExam3Sem.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Cities",
+                columns: table => new
+                {
+                    ZipCode = table.Column<int>(type: "int", nullable: false),
+                    CityName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cities", x => x.ZipCode);
                 });
 
             migrationBuilder.CreateTable(
@@ -152,6 +164,34 @@ namespace CharlieExam3Sem.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Runners",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Zip = table.Column<int>(type: "int", nullable: true),
+                    PhoneNumber = table.Column<int>(type: "int", nullable: false),
+                    AssignCaptain = table.Column<bool>(type: "bit", nullable: true),
+                    EmailAddress = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    RunnerNumber = table.Column<int>(type: "int", nullable: false),
+                    MemberSince = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Runners", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Runners_Cities_Zip",
+                        column: x => x.Zip,
+                        principalTable: "Cities",
+                        principalColumn: "ZipCode",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -190,6 +230,11 @@ namespace CharlieExam3Sem.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Runners_Zip",
+                table: "Runners",
+                column: "Zip");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -210,10 +255,16 @@ namespace CharlieExam3Sem.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Runners");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Cities");
         }
     }
 }

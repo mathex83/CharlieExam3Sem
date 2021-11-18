@@ -1,0 +1,40 @@
+﻿@model IEnumerable<CharlieExam3Sem.Models.City>
+
+@{
+    ViewData["Title"] = "Byliste";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.ZipCode)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.CityName)
+			</th>
+			<th></th>
+		</tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.ZipCode)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.CityName)
+			</td>
+			<td>
+				<a asp-action="Edit" asp-route-id="@item.ZipCode">Edit</a> | 
+				<a asp-action="Delete" asp-route-id="@item.ZipCode">Delete</a>
+			</td>
+		</tr>
+}
+    </tbody>
+</table>

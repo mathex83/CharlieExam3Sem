@@ -3,7 +3,6 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	@*<meta name="google-signin-client_id" content="85513290599-8r2ut5mdg0ejpit6mroa8imh3tf2o0ob.apps.googleusercontent.com">*@
 	<title>CharlieExam3Sem - @ViewData["Title"]</title>
 	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="~/css/site.css" />
@@ -18,11 +17,15 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-					<ul class="navbar-nav flex-grow-1">
+					<ul class="navbar-nav flex-grow-1">						
 						<li class="nav-item">
-							<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+							<a class="nav-link text-dark" asp-area="" asp-controller="Runners" asp-action="RunnerList">Add runner</a>
 						</li>
+						<li class="nav-item">
+							<a class="nav-link text-dark" asp-area="" asp-controller="Cities" asp-action="Index">Add city</a>
+						</li>						
 					</ul>
+
 					<partial name="_LoginPartial" />
 				</div>
 			</div>
