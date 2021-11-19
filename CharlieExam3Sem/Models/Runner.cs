@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -27,6 +28,7 @@ namespace CharlieExam3Sem.Models
 		[Required]
 		public int PhoneNumber { get; set; }
 
+		[DefaultValue(false)]
 		public bool? AssignCaptain { get; set; }
 
 		[Required]
@@ -47,12 +49,13 @@ namespace CharlieExam3Sem.Models
 		public int ID { get; set; }
 
 		[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-		private DateTime memberSince;
+		private DateTime memberSince = DateTime.Now;
 
+		
 		public DateTime MemberSince
 		{
 			get { return memberSince; }
-			set { memberSince = DateTime.Now.Date; }
+			set { memberSince = value; }
 		}
 	}
 }
