@@ -19,11 +19,14 @@
 				<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
 					<ul class="navbar-nav flex-grow-1">						
 						<li class="nav-item">
-							<a class="nav-link text-dark" asp-area="" asp-controller="Runners" asp-action="RunnerList">Add runner</a>
+							<a class="nav-link text-dark" asp-controller="Runners" asp-action="RunnerList">Add runner</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link text-dark" asp-area="" asp-controller="Cities" asp-action="Index">Add city</a>
-						</li>						
+							<a class="nav-link text-dark" asp-controller="Cities" asp-action="CitiesList">Add city</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-dark" asp-controller="Home" asp-action="FileHandling">Filhåndtering</a>
+						</li>
 					</ul>
 
 					<partial name="_LoginPartial" />

@@ -75,12 +75,12 @@ namespace CharlieExam3Sem.Migrations
                     b.Property<int>("RunnerNumber")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Zip")
+                    b.Property<int?>("ZipCode1")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("Zip");
+                    b.HasIndex("ZipCode1");
 
                     b.ToTable("Runners");
                 });
@@ -289,7 +289,7 @@ namespace CharlieExam3Sem.Migrations
                 {
                     b.HasOne("CharlieExam3Sem.Models.City", "ZipCode")
                         .WithMany()
-                        .HasForeignKey("Zip");
+                        .HasForeignKey("ZipCode1");
 
                     b.Navigation("ZipCode");
                 });
