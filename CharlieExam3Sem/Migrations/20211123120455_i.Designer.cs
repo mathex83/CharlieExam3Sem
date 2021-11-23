@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CharlieExam3Sem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211119083835_i")]
+    [Migration("20211123120455_i")]
     partial class i
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -77,12 +77,12 @@ namespace CharlieExam3Sem.Migrations
                     b.Property<int>("RunnerNumber")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Zip")
+                    b.Property<int?>("ZipCode1")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("Zip");
+                    b.HasIndex("ZipCode1");
 
                     b.ToTable("Runners");
                 });
@@ -291,7 +291,7 @@ namespace CharlieExam3Sem.Migrations
                 {
                     b.HasOne("CharlieExam3Sem.Models.City", "ZipCode")
                         .WithMany()
-                        .HasForeignKey("Zip");
+                        .HasForeignKey("ZipCode1");
 
                     b.Navigation("ZipCode");
                 });

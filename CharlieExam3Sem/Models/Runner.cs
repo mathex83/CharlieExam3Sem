@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -22,7 +23,7 @@ namespace CharlieExam3Sem.Models
 		[Required]
 		public string Address { get; set; }
 
-		[ForeignKey("Zip")]
+		[DatabaseGenerated(DatabaseGeneratedOption.None), DefaultValue(7800)]
 		public City ZipCode { get; set; }
 
 		[Required]
@@ -51,7 +52,6 @@ namespace CharlieExam3Sem.Models
 		[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
 		private DateTime memberSince = DateTime.Now;
 
-		
 		public DateTime MemberSince
 		{
 			get { return memberSince; }

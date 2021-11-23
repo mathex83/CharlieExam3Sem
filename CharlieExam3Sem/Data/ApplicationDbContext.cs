@@ -12,6 +12,7 @@ namespace CharlieExam3Sem.Data
 		}
 
 		public DbSet<City> Cities { get; set; }
+		
 		public DbSet<Runner> Runners { get; set; }
 		//public DbSet<EventInfo> Events { get; set; }
 	}

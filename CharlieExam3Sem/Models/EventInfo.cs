@@ -15,7 +15,7 @@
 //		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 //		public int ID { get; set; }
 
-//		[ForeignKey("ID")]
+//		//[ForeignKey("ID")]
 //		public Runner RunnerID { get; set; }
 
 //		[Required]

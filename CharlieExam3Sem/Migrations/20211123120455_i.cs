@@ -174,7 +174,7 @@ namespace CharlieExam3Sem.Migrations
                     LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Zip = table.Column<int>(type: "int", nullable: true),
+                    ZipCode1 = table.Column<int>(type: "int", nullable: true),
                     PhoneNumber = table.Column<int>(type: "int", nullable: false),
                     AssignCaptain = table.Column<bool>(type: "bit", nullable: true),
                     EmailAddress = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
@@ -185,8 +185,8 @@ namespace CharlieExam3Sem.Migrations
                 {
                     table.PrimaryKey("PK_Runners", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Runners_Cities_Zip",
-                        column: x => x.Zip,
+                        name: "FK_Runners_Cities_ZipCode1",
+                        column: x => x.ZipCode1,
                         principalTable: "Cities",
                         principalColumn: "ZipCode",
                         onDelete: ReferentialAction.Restrict);
@@ -232,9 +232,9 @@ namespace CharlieExam3Sem.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Runners_Zip",
+                name: "IX_Runners_ZipCode1",
                 table: "Runners",
-                column: "Zip");
+                column: "ZipCode1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
