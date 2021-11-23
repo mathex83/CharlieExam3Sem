@@ -72,11 +72,11 @@ namespace CharlieExam3Sem.Controllers
 						RunnerNumber = r.RunnerNumber,
 						ZipCode = r.ZipCode
 					}
-					);
-					await _context.SaveChangesAsync();
+					);					
 				}
 			}
-			
+			await _context.SaveChangesAsync();
+
 			return RedirectToAction("RunnerList","Runners");
 		}
 

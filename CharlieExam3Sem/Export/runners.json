@@ -1,1 +1,28 @@
-[]
+[
+  {
+    "FirstName": "Martin",
+    "LastName": "Nørholm",
+    "BirthDate": "2021-11-01T15:01:00",
+    "Address": "Frederiksgade 28C, kl. th.",
+    "ZipCode": null,
+    "PhoneNumber": 31373989,
+    "AssignCaptain": false,
+    "EmailAddress": "mn@mn.dk",
+    "RunnerNumber": 300,
+    "ID": 1,
+    "MemberSince": "2021-11-23T15:02:00"
+  },
+  {
+    "FirstName": "Mn",
+    "LastName": "Nørd",
+    "BirthDate": "2021-11-01T15:01:00",
+    "Address": "Frederiksgade 28C, kl. th.",
+    "ZipCode": null,
+    "PhoneNumber": 31373989,
+    "AssignCaptain": false,
+    "EmailAddress": "mn@mn.dk",
+    "RunnerNumber": 400,
+    "ID": 2,
+    "MemberSince": "2021-11-23T15:02:00"
+  }
+]
