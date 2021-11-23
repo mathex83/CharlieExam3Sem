@@ -18,20 +18,7 @@ namespace CharlieExam3Sem.Controllers
 		private readonly ILogger<HomeController> _logger;
 
 		private readonly ApplicationDbContext _context;
-		public static bool CheckForInternetConnection()
-		{
-			try
-			{
-				using (var client = new WebClient())
-				using (client.OpenRead("http://google.com/generate_204"))
-					return true;
-			}
-			catch
-			{
-				return false;
-			}
-		}
-
+		
 		public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
 		{
 			_context = context;
