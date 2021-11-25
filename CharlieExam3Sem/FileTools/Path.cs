@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace CharlieExam3Sem.FileTools
+﻿namespace CharlieExam3Sem.FileTools
 {
+	///Udviklet af: Martin Nørholm
 	public static class Path
 	{
 		private static readonly string _filePath = @"..\CharlieExam3Sem\Export\runners.json";

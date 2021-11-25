@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace CharlieExam3Sem.Controllers
 {
+    ///Udviklet af: Martin Nørholm, Janus B. Reedtz og Frederik M. Nielsen
 	public class CitiesController : Controller
     {
         private readonly ApplicationDbContext _context;

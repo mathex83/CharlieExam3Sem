@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CharlieExam3Sem.Models
 {
+	///Udviklet af: Martin Nørholm, Janus B. Reedtz og Frederik M. Nielsen
 	public class Runner
 	{
 		[Required]

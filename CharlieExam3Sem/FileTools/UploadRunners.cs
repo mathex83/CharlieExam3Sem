@@ -5,6 +5,7 @@ using System.IO;
 
 namespace CharlieExam3Sem.FileTools
 {
+	///Udviklet af: Martin Nørholm
 	public class UploadRunners
 	{
 		public List<Runner> Runners { get; set; }
