@@ -13,39 +13,44 @@ using System.Net;
 
 namespace CharlieExam3Sem.Controllers
 {
+	
 	public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
 
 		private readonly ApplicationDbContext _context;
-		
+
+		///Udviklet af: Martin Nørholm, Janus B. Reedtz og Frederik M. Nielsen
 		public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
 		{
 			_context = context;
 			_logger = logger;
 		}
-
+		///Udviklet af: Martin Nørholm, Janus B. Reedtz og Frederik M. Nielsen
 		public IActionResult Index()
 		{
 			return View();
 		}
-
+		///Udviklet af: Martin Nørholm, Janus B. Reedtz og Frederik M. Nielsen
 		public IActionResult AccessDenied()
 		{
 			return View();
 		}
+		///Udviklet af: Martin Nørholm, Janus B. Reedtz og Frederik M. Nielsen
 		[Authorize]
 		public IActionResult FileHandling()
 		{
 			return View();
 		}
 
+		///Udviklet af: Martin Nørholm
 		[Authorize]
 		public IActionResult FileSavedOk()
 		{
 			SaveRunners saveRunners = new SaveRunners(_context);
 			return View();
 		}
+		///Udviklet af: Martin Nørholm
 		[Authorize]
 		public async Task<IActionResult> FileUploadedOk()
 		{
@@ -80,12 +85,14 @@ namespace CharlieExam3Sem.Controllers
 			return RedirectToAction("RunnerList","Runners");
 		}
 
+		///Udviklet af: Martin Nørholm, Janus B. Reedtz og Frederik M. Nielsen
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 		}
 
+		///Udviklet af: Martin Nørholm, Janus B. Reedtz og Frederik M. Nielsen
 		private bool RunnerExists(int id)
 		{
 			return _context.Runners.Any(e => e.ID == id);

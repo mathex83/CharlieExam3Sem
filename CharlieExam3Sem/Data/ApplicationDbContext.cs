@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CharlieExam3Sem.Data
 {
+	///Udviklet af: Martin Nørholm, Janus B. Reedtz og Frederik M. Nielsen
 	public class ApplicationDbContext : IdentityDbContext
 	{
 		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)

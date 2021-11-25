@@ -7,6 +7,7 @@ using System.Linq;
 
 namespace CharlieExam3Sem.FileTools
 {
+	///Udviklet af: Martin Nørholm
 	public class SaveRunners
 	{
 		private readonly ApplicationDbContext _db;
